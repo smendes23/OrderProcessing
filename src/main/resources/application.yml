@@ -1,0 +1,32 @@
+kafka:
+    topic:
+        producer: order-query
+        consumer: order-events
+server:
+    port: 8082
+spring:
+    application:
+        name: OrderProcessing
+    kafka:
+        bootstrap-servers: localhost:9092
+        consumer:
+            group-id: order-query
+            key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+            value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        producer:
+            key-serializer: org.apache.kafka.common.serialization.StringSerializer
+            value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+        properties:
+            spring.json.trusted.packages: '*'
+    datasource:
+        url: jdbc:sqlserver://localhost:1433;encrypt=true;trustServerCertificate=true;databaseName=pedidos
+        username: sa
+        password: S@ul0@1982
+    jpa:
+        database-platform: org.hibernate.dialect.SQLServerDialect
+        defer-datasource-initialization: true
+        hibernate:
+            ddl-auto: none
+        properties:
+          hibernate:
+              format_sql: true

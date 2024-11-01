@@ -1,0 +1,1 @@
+ALTER TABLE IF EXISTS product ADD CONSTRAINT FKsmi32wpwaas2obbgwlgu5q7gr FOREIGN KEY (order_id) REFERENCES tb_order (id);
